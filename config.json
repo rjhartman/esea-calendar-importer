@@ -1,0 +1,9 @@
+{
+    "esea": {
+        "team_number": 9999999,
+        "censor": true
+    },
+    "google_calendar": {
+        "id": "example-id@group.calendar.google.com"
+    }
+}

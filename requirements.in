@@ -1,0 +1,8 @@
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+cfscrape
+pip-tools
+python-dateutil
+cerberus
+better_profanity
