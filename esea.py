@@ -14,9 +14,14 @@ UNASSIGNED_MATCH_TITLE = "Default time for ESEA Match (unassigned)"
 @dataclass
 class Match:
     date: datetime
-    title: str
     map: str
+    title: str
     enemy_team: Optional[str] = None
+    id: Optional[int] = None
+
+    @property
+    def url(self):
+        return f"{ESEA_URL}/match/{self.id}" if self.id else None
 
 
 team_number = config.esea_team_number
@@ -42,9 +47,10 @@ def parse_match(match: Dict[str, any]) -> Match:
         map = match["map"]["id"]
     return Match(
         date=parser.parse(date),
+        id=match.get("id"),
+        enemy_team=enemy_team,
         map=map if map else "Pending map veto",
         title=f"ESEA match vs. {enemy_team}" if enemy_team else UNASSIGNED_MATCH_TITLE,
-        enemy_team=enemy_team,
     )
 
 

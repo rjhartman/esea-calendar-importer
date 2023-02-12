@@ -16,15 +16,13 @@ An over-complicated python script to automatically import upcoming ESEA matches 
 $ pip install -r requirements.txt
 ```
 
-3. Follow the [quickstart guide](https://developers.google.com/calendar/api/quickstart/python#enable_the_api) for the Google Calendar API to enable the API and download OAuth credentials. Save this to `credentials.json` in the project's root.
+3. Follow the [quickstart guide](https://developers.google.com/calendar/api/quickstart/python#enable_the_api) for the Google Calendar API to enable the API. You'll then have to create a service account with access to this application. Save the account's key pair to a JSON file, and place it in the project's root as `credentials.json`. You will have to share the calendar you want to import to with the service account you just created.
 
 4. Run the script!
 
 ```sh
 $ python main.py
 ```
-
-Upon running, the script will ask you to authenticate via OAuth in your default browser. Log in and allow access to calendars/events. Once logged in, the OAuth token will be cached under `.cache`, so this will not be necessary again until the token expires.
 
 ## Configuration Values
 
