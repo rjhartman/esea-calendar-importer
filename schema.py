@@ -1,3 +1,4 @@
+"""Contains schema and a validator for the config file (config.json)"""
 from cerberus import Validator
 
 CONFIG_SCHEMA = {

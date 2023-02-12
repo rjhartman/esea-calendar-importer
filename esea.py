@@ -23,6 +23,14 @@ team_number = config.esea_team_number
 
 
 def parse_match(match: Dict[str, any]) -> Match:
+    """Parses a match returned by ESEA's API
+
+    Args:
+        match (Dict[str, any]): The match returned by ESEA
+
+    Returns:
+        Match: A dataclass containing the match's information
+    """
     date = match["date"]
     enemy_team = None
     map = None
@@ -41,11 +49,21 @@ def parse_match(match: Dict[str, any]) -> Match:
 
 
 def get_all_matches() -> List[Match]:
+    """Gets all matches for the configured ESEA team
+
+    Returns:
+        List[Match]: All matches for the configured ESEA team
+    """
     scraper = cfscrape.create_scraper()
     res = scraper.get(f"{ESEA_URL}/api/teams/{team_number}/matches")
     data = res.json()["data"]
     return [parse_match(match) for match in data]
 
 
-def get_confirmed_matches() -> List[Match]:
+def get_assigned_matches() -> List[Match]:
+    """Gets only the confirmed matches for the configured ESEA team
+
+    Returns:
+        List[Match]: All matches that have assigned teams
+    """
     return [m for m in get_all_matches() if m.title != UNASSIGNED_MATCH_TITLE]
